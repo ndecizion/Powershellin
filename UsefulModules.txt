@@ -1,0 +1,2 @@
+Import-excel - import data from & export data to excel files, including generation of pivot tables
+SharePointPnP - interact with sharepoint files, including checkin/checkout
