@@ -6,8 +6,8 @@
     changes are made to KeepworkTask.ps1.  This is due to classes not being loaded in memory based
     on file timestamps, but based on class name or filename updates.  Pretty dumb stuff.
 .EXAMPLE
-$KeepworkTaskPesterScriptPath = "c:\users\adam.twitty\Git\KeepWork\KeepWorkTask_pester.ps1"
-$KeepworkTaskPesterParameters = @{scriptPath = "c:\users\adam.twitty\Git\KeepWork\"}
+$KeepworkTaskPesterScriptPath = "C:\Users\twitt\Documents\Code\Powershellin\KeepWork\KeepWorkTask_pester.ps1"
+$KeepworkTaskPesterParameters = @{scriptPath = "C:\Users\twitt\Documents\Code\Powershellin\KeepWork"}
 $KeepworkTaskPesterContainer = New-PesterContainer -path $KeepworkTaskPesterScriptPath -Data $KeepworkTaskPesterParameters
 Invoke-Pester -Container $KeepworkTaskPesterContainer
 #>
