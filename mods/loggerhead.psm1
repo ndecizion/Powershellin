@@ -111,10 +111,10 @@ function Write-LogsToFile{
 	)
 	$activeContext = Get-LoggingContext $Context
 	if($activeContext.overwrite){
-		$activeContext.stash | Out-File -FilePath $activeContext.file -Append
+		$activeContext.stash | Out-File -FilePath $activeContext.file
 	}
 	else {
-		$activeContext.stash | Out-File -FilePath $activeContext.file
+		$activeContext.stash | Out-File -FilePath $activeContext.file -Append
 	}
 }
 
