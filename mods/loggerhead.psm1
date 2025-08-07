@@ -27,7 +27,7 @@ function New-LoggingContext{
 		file = ""
 		autosaveInterval = -1
 		lastFileWrite = $LoggingStopwatch.ElapsedMilliseconds
-		fileClobber = $false
+		overwrite = $false
 		verbosity = $levelMap["warn"]
 	}
 	return $newLogContext
@@ -74,7 +74,7 @@ function Set-LogFile{
 		# Includes a datestamp in the filename using "_HHmm" format. Defaults true.
 		[bool]$includeTimestamp = $false,
 		# Allow overwrite when false, prevent overwrite when true.
-		[bool]$noclobber = $false
+		[bool]$overwrite = $false
 	)
 	if(-not (test-path $path)){
 		write-warning "Loggerhead.Set-LogFile: Provided Path Does Not Exist"
@@ -91,7 +91,7 @@ function Set-LogFile{
 	$logFile += ".log"
 	$targetLoggingContext = Get-LoggingContext $Context
 	$targetLoggingContext.file = $logFile
-	$targetLoggingContext.$noclobber = $noclobber
+	$targetLoggingContext.overwrite = $overwrite
 }
 
 function Get-LogFile{
@@ -120,6 +120,13 @@ function Write-LogsToFile{
 		#w
 		[string]$Context
 	)
+	$activeContext = Get-LoggingContext $Context
+	if($activeContext.overwrite){
+		$activeContext.stash | Out-File -FilePath $activeContext.file -Append
+	}
+	else {
+		$activeContext.stash | Out-File -FilePath $activeContext.file
+	}
 }
 
 function Set-AutosaveInterval{
