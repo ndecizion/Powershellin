@@ -12,13 +12,8 @@ $levelMap = @{
 }
 
 function New-LoggingContext{
-	<#
-	.SYNOPSIS
-		.
-	.OUTPUTS
-		.
-	#>
 	param(
+		# Desired logging context to work in. Leave null for the default.
 		[string]$contextName
 	)
 	$newLogContext = @{
@@ -34,12 +29,6 @@ function New-LoggingContext{
 }
 
 function Get-LoggingContext{
-	<#
-	.SYNOPSIS
-		.
-	.OUTPUTS
-		.
-	#>
 	param(
 		# Desired logging context to work in. Leave null for the default.
 		[string]$Context
